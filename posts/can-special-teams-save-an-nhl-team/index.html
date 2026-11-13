@@ -376,15 +376,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>In hockey, a power play can change the game in seconds. A successful use of a man advantage creates scoring opportunities that may have not been possible at even strength, while a strong penalty kill can prevent opponents from taking advantage of those same situations.</p>
 <p>But how much can special teams really accomplish over an entire season? Can an elite power play make up for a teams’ weakness in the 5 on 5, or does sustained success depend on how well teams perform when both sides have the same amount of skaters?</p>
 <p>To explore these questions, I compared all 32 of the NHL teams’ power play percentages, penalty kill percentages, five-on-five expected goal shares, goal differentials, and points percentages from the 2025-26 season, supplied by Hockey Reference and Puck Sleuth. Five teams, the Edmonton Oilers, Colorado Avalanche, Dallas Stars, Nashville Predators, and the Toronto Maple Leafs provide particularly interesting contrasts in their game, and will be noted going forward.</p>
-<p>All of this being said, should we expect that teams that convert on a high percentage of their power play opportunities are one of the league’s best teams? The numbers suggest the relationship is more complicated than that.</p>
 <section id="a-power-play-can-help-but-does-it-guarantee-success" class="level2">
-<h2 class="anchored" data-anchor-id="a-power-play-can-help-but-does-it-guarantee-success">A power play can help, but does it guarantee success?</h2>
+<h2 class="anchored" data-anchor-id="a-power-play-can-help-but-does-it-guarantee-success">A Power Play Can Help, but Does it Guarantee Success?</h2>
 <p>As one of the clearest ways to gain an advantage in the game of hockey, the power play gives teams more scoring opportunities then they would normally ever have in a five-on-five setting. But high conversion rates don’t necessarily always mean a successful season.</p>
 <p>Comparing power play percentage with points helps to test whether teams that capitalize on a man advantage actually translate it into points (as in their season total, not game total) and wins. The particularly interesting cases are the hockey clubs that divert from the overall pattern, whether it’s earning tons of points without a power play, or the teams whose desirable power play don’t translate into points</p>
 <div class="cell">
 <details class="code-fold">
 <summary>Show R code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>graphic1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  Chart1,</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> pp_display,</span>
@@ -424,10 +423,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>    )</span>
 <span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
 <span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(</span>
-<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>    <span class="at">labels =</span> <span class="fu">label_number</span>(<span class="at">suffix =</span> <span class="st">"%"</span>)</span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>    <span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">label_number</span>(<span class="at">suffix =</span> <span class="st">"%"</span>)</span>
 <span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
 <span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(</span>
-<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>    <span class="at">labels =</span> <span class="fu">label_number</span>(<span class="at">suffix =</span> <span class="st">"%"</span>)</span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>    <span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">label_number</span>(<span class="at">suffix =</span> <span class="st">"%"</span>)</span>
 <span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
 <span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
 <span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Can a Power Play Put a Team over the Top?"</span>,</span>
@@ -435,15 +434,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Power-play percentage"</span>,</span>
 <span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Points percentage"</span>,</span>
 <span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"Team group"</span>,</span>
-<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="st">"Source: Hockey-Reference | Analysis by Connor Peck"</span></span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="st">"Source: Hockey-Reference and Puck Sleuth | Analysis by Connor Peck"</span></span>
 <span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
 <span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">12</span>) <span class="sc">+</span></span>
 <span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
-<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"bold"</span>, <span class="at">size =</span> <span class="dv">16</span>),</span>
+<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"bold"</span>, <span class="at">size =</span> <span class="dv">20</span>),</span>
 <span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.subtitle =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">11</span>),</span>
-<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.position =</span> <span class="st">"bottom"</span>,</span>
-<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a>    <span class="at">panel.grid.minor =</span> <span class="fu">element_blank</span>()</span>
-<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">10</span>),</span>
+<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.position =</span> <span class="st">"bottom"</span>,</span>
+<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a>    <span class="at">panel.grid.minor =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.title.position =</span> <span class="st">"plot"</span>,</span>
+<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.caption =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">9</span>, <span class="at">hjust =</span> <span class="dv">0</span>)</span>
+<span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb1-64"><a href="#cb1-64" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-65"><a href="#cb1-65" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-66"><a href="#cb1-66" aria-hidden="true" tabindex="-1"></a>graphic1</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stderr">
 <pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
@@ -460,7 +465,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>These comparisons highlight the separation between a team’s performance and overall results. A productive power play could potentially be a weapon, but Colorado’s standing suggests that teams can experience success, even with a less than exceptional one.</p>
 </section>
 <section id="the-penalty-kill-provides-the-other-half-of-the-equation" class="level2">
-<h2 class="anchored" data-anchor-id="the-penalty-kill-provides-the-other-half-of-the-equation">The penalty kill provides the other half of the equation</h2>
+<h2 class="anchored" data-anchor-id="the-penalty-kill-provides-the-other-half-of-the-equation">The penalty kill Provides the Other Half of the Equation</h2>
 <p>On the opposite side of the ice lies a unit just as important, the penalty kill. Keeping teams off the scoreboard, especially in a man disadvantage, is a momentum shifter.</p>
 <p>Penalty kill percentage offers another piece to this puzzle. It measures how successfully a team can kill a power play, but doesn’t tell the whole story about a teams’ defense in general. So does routinely keeping opponents off of the scoreboard shorthanded translate to season long success, or is it yet another strength among others that a team needs to win consistently?</p>
 <div class="cell">
@@ -528,7 +533,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="index_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="960"></p>
+<p><img src="index_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="960"></p>
 </figure>
 </div>
 </div>
@@ -622,23 +627,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb4-76"><a href="#cb4-76" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
-<div id="zvziboyaet" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#zvziboyaet table {
+<div id="rhraolkmbs" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#rhraolkmbs table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#zvziboyaet thead, #zvziboyaet tbody, #zvziboyaet tfoot, #zvziboyaet tr, #zvziboyaet td, #zvziboyaet th {
+#rhraolkmbs thead, #rhraolkmbs tbody, #rhraolkmbs tfoot, #rhraolkmbs tr, #rhraolkmbs td, #rhraolkmbs th {
   border-style: none;
 }
 
-#zvziboyaet p {
+#rhraolkmbs p {
   margin: 0;
   padding: 0;
 }
 
-#zvziboyaet .gt_table {
+#rhraolkmbs .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -664,12 +669,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-left-color: #D3D3D3;
 }
 
-#zvziboyaet .gt_caption {
+#rhraolkmbs .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#zvziboyaet .gt_title {
+#rhraolkmbs .gt_title {
   color: #333333;
   font-size: 17px;
   font-weight: initial;
@@ -681,7 +686,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-bottom-width: 0;
 }
 
-#zvziboyaet .gt_subtitle {
+#rhraolkmbs .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -693,7 +698,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-top-width: 0;
 }
 
-#zvziboyaet .gt_heading {
+#rhraolkmbs .gt_heading {
   background-color: #FFFFFF;
   text-align: left;
   border-bottom-color: #FFFFFF;
@@ -705,13 +710,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-right-color: #D3D3D3;
 }
 
-#zvziboyaet .gt_bottom_border {
+#rhraolkmbs .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#zvziboyaet .gt_col_headings {
+#rhraolkmbs .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -726,7 +731,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-right-color: #D3D3D3;
 }
 
-#zvziboyaet .gt_col_heading {
+#rhraolkmbs .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -746,7 +751,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   overflow-x: hidden;
 }
 
-#zvziboyaet .gt_column_spanner_outer {
+#rhraolkmbs .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -758,15 +763,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 4px;
 }
 
-#zvziboyaet .gt_column_spanner_outer:first-child {
+#rhraolkmbs .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#zvziboyaet .gt_column_spanner_outer:last-child {
+#rhraolkmbs .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#zvziboyaet .gt_column_spanner {
+#rhraolkmbs .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -778,11 +783,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   width: 100%;
 }
 
-#zvziboyaet .gt_spanner_row {
+#rhraolkmbs .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#zvziboyaet .gt_group_heading {
+#rhraolkmbs .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -808,7 +813,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   text-align: left;
 }
 
-#zvziboyaet .gt_empty_group_heading {
+#rhraolkmbs .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -823,15 +828,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   vertical-align: middle;
 }
 
-#zvziboyaet .gt_from_md > :first-child {
+#rhraolkmbs .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#zvziboyaet .gt_from_md > :last-child {
+#rhraolkmbs .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#zvziboyaet .gt_row {
+#rhraolkmbs .gt_row {
   padding-top: 5px;
   padding-bottom: 5px;
   padding-left: 5px;
@@ -850,7 +855,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   overflow-x: hidden;
 }
 
-#zvziboyaet .gt_stub {
+#rhraolkmbs .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -863,7 +868,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#zvziboyaet .gt_stub_row_group {
+#rhraolkmbs .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -877,15 +882,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   vertical-align: top;
 }
 
-#zvziboyaet .gt_row_group_first td {
+#rhraolkmbs .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#zvziboyaet .gt_row_group_first th {
+#rhraolkmbs .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#zvziboyaet .gt_summary_row {
+#rhraolkmbs .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -895,16 +900,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#zvziboyaet .gt_first_summary_row {
+#rhraolkmbs .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#zvziboyaet .gt_first_summary_row.thick {
+#rhraolkmbs .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#zvziboyaet .gt_last_summary_row {
+#rhraolkmbs .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -914,7 +919,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-bottom-color: #D3D3D3;
 }
 
-#zvziboyaet .gt_grand_summary_row {
+#rhraolkmbs .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -924,7 +929,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#zvziboyaet .gt_first_grand_summary_row {
+#rhraolkmbs .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -934,7 +939,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-top-color: #D3D3D3;
 }
 
-#zvziboyaet .gt_last_grand_summary_row_top {
+#rhraolkmbs .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -944,11 +949,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-bottom-color: #D3D3D3;
 }
 
-#zvziboyaet .gt_striped {
+#rhraolkmbs .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#zvziboyaet .gt_table_body {
+#rhraolkmbs .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -957,7 +962,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-bottom-color: #D3D3D3;
 }
 
-#zvziboyaet .gt_footnotes {
+#rhraolkmbs .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -971,7 +976,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-right-color: #D3D3D3;
 }
 
-#zvziboyaet .gt_footnote {
+#rhraolkmbs .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -980,7 +985,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#zvziboyaet .gt_sourcenotes {
+#rhraolkmbs .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -994,7 +999,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-right-color: #D3D3D3;
 }
 
-#zvziboyaet .gt_sourcenote {
+#rhraolkmbs .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1002,72 +1007,72 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#zvziboyaet .gt_left {
+#rhraolkmbs .gt_left {
   text-align: left;
 }
 
-#zvziboyaet .gt_center {
+#rhraolkmbs .gt_center {
   text-align: center;
 }
 
-#zvziboyaet .gt_right {
+#rhraolkmbs .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#zvziboyaet .gt_font_normal {
+#rhraolkmbs .gt_font_normal {
   font-weight: normal;
 }
 
-#zvziboyaet .gt_font_bold {
+#rhraolkmbs .gt_font_bold {
   font-weight: bold;
 }
 
-#zvziboyaet .gt_font_italic {
+#rhraolkmbs .gt_font_italic {
   font-style: italic;
 }
 
-#zvziboyaet .gt_super {
+#rhraolkmbs .gt_super {
   font-size: 65%;
 }
 
-#zvziboyaet .gt_footnote_marks {
+#rhraolkmbs .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#zvziboyaet .gt_asterisk {
+#rhraolkmbs .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#zvziboyaet .gt_indent_1 {
+#rhraolkmbs .gt_indent_1 {
   text-indent: 5px;
 }
 
-#zvziboyaet .gt_indent_2 {
+#rhraolkmbs .gt_indent_2 {
   text-indent: 10px;
 }
 
-#zvziboyaet .gt_indent_3 {
+#rhraolkmbs .gt_indent_3 {
   text-indent: 15px;
 }
 
-#zvziboyaet .gt_indent_4 {
+#rhraolkmbs .gt_indent_4 {
   text-indent: 20px;
 }
 
-#zvziboyaet .gt_indent_5 {
+#rhraolkmbs .gt_indent_5 {
   text-indent: 25px;
 }
 
-#zvziboyaet .katex-display {
+#rhraolkmbs .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#zvziboyaet div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#rhraolkmbs div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -1263,8 +1268,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Another example is the Nashville Predators, who finished above .500 in points percentage, but failed to hit the 50% benchmark in expected goal share, sitting at 47.6%. Just like Toronto, the Predators found more ways to win, but still evidently struggled to control expected scoring chances.</p>
 <p>Edmonton, who featured a very successful power play and less than desirable penalty kill, featured a modest 51% in xGF%. Dallas, by comparison, paired a lower 28.6% power play conversion with a slightly higher 51.4% in xGF%. So power play efficiency alone cannot explain the difference in teams’ season outcomes.</p>
 </section>
-<section id="conclusion-can-special-teams-save-a-team" class="level2">
-<h2 class="anchored" data-anchor-id="conclusion-can-special-teams-save-a-team">Conclusion: Can special teams save a team?</h2>
+<section id="conclusion" class="level2">
+<h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
 <p>Special teams can provide a major advantage, but they don’t tell the whole story. Edmonton’s elite power play shows the value of scoring with the man advantage, while Colorado’s five-on-five and penalty kill shows the importance of a more complete game, Overall, special teams can help win games, but sustained success is more dependent on how well a team can perform across all situations.</p>
 
 
